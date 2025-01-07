@@ -1393,15 +1393,28 @@
     })();
   
     document.getElementById("contact-form").addEventListener("submit", function (event) {
-      event.preventDefault();
-  
-      emailjs.sendForm("service_stevgbl", "template_1srri1f", this)
-        .then(function () {
-          alert("Message sent successfully!");
-        }, function (error) {
-          alert("Failed to send message: " + JSON.stringify(error));
-        });
+  event.preventDefault();
+
+  emailjs.sendForm("service_stevgbl", "template_1srri1f", this)
+    .then(function () {
+      // Tampilkan pesan sukses menggunakan SweetAlert2
+      Swal.fire({
+        icon: 'success',
+        title: 'Message Sent!',
+        text: 'Thank you for contacting us. We will get back to you soon!',
+        confirmButtonColor: '#4CAF50',
+      });
+    }, function (error) {
+      // Tampilkan pesan error menggunakan SweetAlert2
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops!',
+        text: 'Something went wrong. Please try again later.',
+        confirmButtonColor: '#FF0000',
+      });
     });
+});
+
   </script>
   
 </body>
